@@ -54,7 +54,8 @@ public class ViewTicketsDetails extends AppCompatActivity {
         l1 = findViewById(R.id.tcktlst);
 
 
-        String eid = getIntent().getStringExtra("eid");
+        String eid = sh.getString("eid","");
+        String bid = sh.getString("bid", ":");
 
         fetchHistoryData();
 
@@ -63,7 +64,7 @@ public class ViewTicketsDetails extends AppCompatActivity {
 
 
     private void fetchHistoryData() {
-        String url = "http://" + sh.getString("ip", "") + ":5000/view_event_details"; // Ensure correct endpoint
+        String url = "http://" + sh.getString("ip", "") + ":5000/view_ticket_details"; // Ensure correct endpoint
         RequestQueue queue = Volley.newRequestQueue(this);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -80,7 +81,7 @@ public class ViewTicketsDetails extends AppCompatActivity {
 
                     for (int i = 0; i < ar.length(); i++) {
                         JSONObject jo = ar.getJSONObject(i);
-                        name.add(jo.getString("ename"));
+                        name.add(jo.getString("name"));
                         dob.add(jo.getString("dob"));
                         gender.add(jo.getString("gender"));
                         gov_id.add(jo.getString("gov_id"));
@@ -109,6 +110,7 @@ public class ViewTicketsDetails extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("eid",sh.getString("eid",""));
+                params.put("bid",sh.getString("bid",""));
                 return params;
             }
         };

@@ -1,4 +1,5 @@
 package com.example.smartpass;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -7,92 +8,86 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.smartpass.R;
-
 import java.util.ArrayList;
 
-public class CustomTicket extends BaseAdapter{
+public class CustomTicket extends BaseAdapter {
     private Context context;
-
-    ArrayList<String> a,b,c,d,e;
-
-
-
+    private ArrayList<String> a, b, c, d, e;
 
     public CustomTicket(Context applicationContext, ArrayList<String> a, ArrayList<String> b, ArrayList<String> c, ArrayList<String> d, ArrayList<String> e) {
-        // TODO Auto-generated constructor stub
-        this.context=applicationContext;
-        this.a=a;
-        this.b=b;
-        this.c=c;
-        this.d=d;
-        this.e=e;
-
-
-
+        this.context = applicationContext;
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.d = d;
+        this.e = e;
     }
 
     @Override
     public int getCount() {
-        // TODO Auto-generated method stub
-        return a.size();
+        // If list is empty, return 1 to show "No Tickets Booked" message.
+        return (a.isEmpty()) ? 1 : a.size();
     }
 
     @Override
-    public Object getItem(int arg0) {
-        // TODO Auto-generated method stub
-        return null;
+    public Object getItem(int position) {
+        return (a.isEmpty()) ? null : a.get(position);
     }
 
     @Override
-    public long getItemId(int arg0) {
-        // TODO Auto-generated method stub
-        return 0;
+    public long getItemId(int position) {
+        return position; // Return position instead of 0
     }
 
     @Override
-    public int getItemViewType(int arg0) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public View getView(int position, View convertview, ViewGroup parent) {
-        // TODO Auto-generated method stub
-        LayoutInflater inflator=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+    public View getView(int position, View convertView, ViewGroup parent) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View gridView;
-        if(convertview==null)
-        {
-            gridView=new View(context);
-            gridView=inflator.inflate(R.layout.activity_custom_ticket, null);
 
+        if (convertView == null) {
+            gridView = inflater.inflate(R.layout.activity_custom_ticket, null);
+        } else {
+            gridView = convertView;
         }
-        else
-        {
-            gridView=(View)convertview;
 
+        TextView tv1 = gridView.findViewById(R.id.ticket_name);
+        TextView tv2 = gridView.findViewById(R.id.ticket_dob);
+        TextView tv3 = gridView.findViewById(R.id.ticket_gender);
+        TextView tv4 = gridView.findViewById(R.id.ticket_gov_id);
+        TextView tv5 = gridView.findViewById(R.id.ticket_status);
+
+        if (a.isEmpty()) {
+            // Show "No Tickets Booked" message in the first row
+            tv1.setText("No Tickets Booked");
+            tv1.setTextColor(Color.RED);
+
+            // Hide other TextViews
+            tv2.setVisibility(View.GONE);
+            tv3.setVisibility(View.GONE);
+            tv4.setVisibility(View.GONE);
+            tv5.setVisibility(View.GONE);
+        } else {
+            // Populate data normally
+            tv1.setText("Name: " + a.get(position));
+            tv2.setText("Dob: " + b.get(position));
+            tv3.setText("Gender: " + c.get(position));
+            tv4.setText("Gov ID: " + d.get(position));
+            tv5.setText("Ticket Status: " + e.get(position));
+
+            // Change color if status is "unused"
+            if (e.get(position).equalsIgnoreCase("unused")) {
+                tv5.setTextColor(Color.RED);
+            } else {
+                tv5.setTextColor(Color.BLACK);
+            }
+
+            // Make all TextViews visible
+            tv2.setVisibility(View.VISIBLE);
+            tv3.setVisibility(View.VISIBLE);
+            tv4.setVisibility(View.VISIBLE);
+            tv5.setVisibility(View.VISIBLE);
         }
-        TextView tv1=(TextView)gridView.findViewById(R.id.ticket_name);
-        TextView tv2=(TextView)gridView.findViewById(R.id.ticket_dob);
-        TextView tv3=(TextView)gridView.findViewById(R.id.ticket_gender);
-        TextView tv4=(TextView)gridView.findViewById(R.id.ticket_gov_id);
-        TextView tv5=(TextView)gridView.findViewById(R.id.ticket_status);
-
-
-
-
-        tv1.setText(a.get(position));
-        tv2.setText(b.get(position));
-        tv2.setText(c.get(position));
-        tv2.setText(d.get(position));
-        tv2.setText(e.get(position));
-
-
-
 
         return gridView;
-
     }
-
 }

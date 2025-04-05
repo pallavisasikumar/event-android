@@ -1,6 +1,9 @@
 package com.example.smartpass;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -61,8 +64,18 @@ public class MainActivity extends AppCompatActivity {
                     // Handle the scanned result and display it
                     String scannedData = result.getContents();
 
+                    SharedPreferences sh = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+
+                    SharedPreferences.Editor ed = sh.edit();
+                    ed.putString("bid", scannedData);
+                    ed.commit();
+
                     // Optionally, show a toast message with the scanned result
-                    Toast.makeText(MainActivity.this, "Scanned: " + scannedData, Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Scanned", Toast.LENGTH_LONG).show();
+
+                    Intent i = new Intent(getApplicationContext(), ViewTicketsDetails.class);
+                    startActivity(i);
+
                 } else {
                     // Handle if no QR code was scanned
                     Toast.makeText(MainActivity.this, "Scan cancelled", Toast.LENGTH_SHORT).show();

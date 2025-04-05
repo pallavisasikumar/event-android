@@ -19,7 +19,7 @@
             android:id="@+id/ticket_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name: John Doe"
+            android:text=""
             android:textStyle="bold"
             android:textSize="16sp"
             android:textColor="@android:color/black" />
@@ -28,7 +28,7 @@
             android:id="@+id/ticket_dob"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="DOB: 01/01/1990"
+            android:text=""
             android:textSize="14sp"
             android:textColor="@android:color/darker_gray" />
 
@@ -36,7 +36,7 @@
             android:id="@+id/ticket_gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gender: Male"
+            android:text=""
             android:textSize="14sp"
             android:textColor="@android:color/darker_gray" />
 
@@ -44,7 +44,7 @@
             android:id="@+id/ticket_gov_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gov ID No: 1234-5678-9101"
+            android:text=""
             android:textSize="14sp"
             android:textColor="@android:color/darker_gray" />
 
@@ -52,7 +52,7 @@
             android:id="@+id/ticket_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Status: Confirmed"
+            android:text=""
             android:textColor="@android:color/holo_green_dark"
             android:textSize="14sp" />
     </LinearLayout>

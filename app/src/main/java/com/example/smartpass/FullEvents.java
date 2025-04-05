@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -37,6 +38,8 @@ public class FullEvents extends AppCompatActivity implements AdapterView.OnItemC
     SharedPreferences sh;
     ArrayList<String> name, image, date, eid;
 
+    ProgressBar pb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,12 +51,16 @@ public class FullEvents extends AppCompatActivity implements AdapterView.OnItemC
             return insets;
         });
 
+        pb = findViewById(R.id.progressBar);
 
         l1 = findViewById(R.id.lst);
         sh = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         fetchHistoryData();
         l1.setOnItemClickListener(FullEvents.this);
+
+        pb.setVisibility(View.VISIBLE);
+
 
     }
 
@@ -67,6 +74,9 @@ public class FullEvents extends AppCompatActivity implements AdapterView.OnItemC
             public void onResponse(String response) {
                 Log.d("ServerResponse", response);
                 try {
+
+                    pb.setVisibility(View.GONE);
+
                     JSONArray ar = new JSONArray(response);
                     name = new ArrayList<>();
                     image = new ArrayList<>();
@@ -113,6 +123,10 @@ public class FullEvents extends AppCompatActivity implements AdapterView.OnItemC
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+        SharedPreferences.Editor ed = sh.edit();
+        ed.putString("eid",eid.get(i));
+        ed.commit();
 
         Intent ik = new Intent(getApplicationContext(), MainActivity.class);
         ik.putExtra("eid", eid.get(i));
