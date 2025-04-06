@@ -92,7 +92,7 @@ public class ViewTicketsDetails extends AppCompatActivity {
                     ArrayAdapter<String> ad = new ArrayAdapter<>(ViewTicketsDetails.this, android.R.layout.simple_list_item_1, name);
 //                    l1.setAdapter(ad);
 
-                    l1.setAdapter(new CustomTicket(ViewTicketsDetails.this,name,dob,gender,gov_id,status));
+                    l1.setAdapter(new CustomTicket(ViewTicketsDetails.this,name,dob,gender,gov_id));
 
                 } catch (Exception e) {
                     Log.e("JSONError", e.toString());

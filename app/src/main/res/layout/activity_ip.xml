@@ -7,7 +7,9 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".Login">
+    tools:context=".Login"
+    android:background="@drawable/conwcert_aes"
+    >
 
     <TableRow
         android:layout_width="match_parent"
@@ -20,13 +22,15 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
-            android:hint="Enter IP Address" />
+            android:hint="Enter IP Address"
+            android:textColor="@color/white"/>
     </TableRow>
 
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginBottom="100dp">
 
         <Button
             android:id="@+id/button"

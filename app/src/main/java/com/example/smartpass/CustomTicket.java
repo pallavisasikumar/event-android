@@ -12,15 +12,14 @@ import java.util.ArrayList;
 
 public class CustomTicket extends BaseAdapter {
     private Context context;
-    private ArrayList<String> a, b, c, d, e;
+    private ArrayList<String> a, b, c, d;
 
-    public CustomTicket(Context applicationContext, ArrayList<String> a, ArrayList<String> b, ArrayList<String> c, ArrayList<String> d, ArrayList<String> e) {
+    public CustomTicket(Context applicationContext, ArrayList<String> a, ArrayList<String> b, ArrayList<String> c, ArrayList<String> d) {
         this.context = applicationContext;
         this.a = a;
         this.b = b;
         this.c = c;
         this.d = d;
-        this.e = e;
     }
 
     @Override
@@ -54,7 +53,6 @@ public class CustomTicket extends BaseAdapter {
         TextView tv2 = gridView.findViewById(R.id.ticket_dob);
         TextView tv3 = gridView.findViewById(R.id.ticket_gender);
         TextView tv4 = gridView.findViewById(R.id.ticket_gov_id);
-        TextView tv5 = gridView.findViewById(R.id.ticket_status);
 
         if (a.isEmpty()) {
             // Show "No Tickets Booked" message in the first row
@@ -65,27 +63,19 @@ public class CustomTicket extends BaseAdapter {
             tv2.setVisibility(View.GONE);
             tv3.setVisibility(View.GONE);
             tv4.setVisibility(View.GONE);
-            tv5.setVisibility(View.GONE);
         } else {
             // Populate data normally
             tv1.setText("Name: " + a.get(position));
             tv2.setText("Dob: " + b.get(position));
             tv3.setText("Gender: " + c.get(position));
             tv4.setText("Gov ID: " + d.get(position));
-            tv5.setText("Ticket Status: " + e.get(position));
 
-            // Change color if status is "unused"
-            if (e.get(position).equalsIgnoreCase("unused")) {
-                tv5.setTextColor(Color.RED);
-            } else {
-                tv5.setTextColor(Color.BLACK);
-            }
+
 
             // Make all TextViews visible
             tv2.setVisibility(View.VISIBLE);
             tv3.setVisibility(View.VISIBLE);
             tv4.setVisibility(View.VISIBLE);
-            tv5.setVisibility(View.VISIBLE);
         }
 
         return gridView;

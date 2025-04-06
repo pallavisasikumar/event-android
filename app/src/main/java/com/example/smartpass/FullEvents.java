@@ -95,7 +95,7 @@ public class FullEvents extends AppCompatActivity implements AdapterView.OnItemC
                     ArrayAdapter<String> ad = new ArrayAdapter<>(FullEvents.this, android.R.layout.simple_list_item_1, name);
 //                    l1.setAdapter(ad);
 
-                    l1.setAdapter(new CustomEvent(FullEvents.this,name,date));
+                    l1.setAdapter(new CustomEvent(FullEvents.this,name, date, image));
 
                 } catch (Exception e) {
                     Log.e("JSONError", e.toString());

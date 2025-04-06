@@ -48,12 +48,6 @@
             android:textSize="14sp"
             android:textColor="@android:color/darker_gray" />
 
-        <TextView
-            android:id="@+id/ticket_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textColor="@android:color/holo_green_dark"
-            android:textSize="14sp" />
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

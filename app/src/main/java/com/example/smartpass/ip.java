@@ -33,7 +33,7 @@ public class ip extends AppCompatActivity {
 
 
             sh = PreferenceManager.getDefaultSharedPreferences(ip.this);
-            e1 = findViewById(R.id.editTextText2);
+            e1 = findViewById(R.id.editTextText2); //initialization of objects
             b1 = findViewById(R.id.button);
 
             b1.setOnClickListener(new View.OnClickListener() {
