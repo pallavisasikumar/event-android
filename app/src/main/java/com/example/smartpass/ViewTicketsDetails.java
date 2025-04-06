@@ -72,6 +72,10 @@ public class ViewTicketsDetails extends AppCompatActivity {
             public void onResponse(String response) {
                 Log.d("ServerResponse", response);
                 try {
+
+                    // there will be number of tickets booked in a booking
+                    // and these will be stored in a array list and display
+
                     JSONArray ar = new JSONArray(response);
                     name = new ArrayList<>();
                     dob = new ArrayList<>();
@@ -89,9 +93,11 @@ public class ViewTicketsDetails extends AppCompatActivity {
                     }
 
                     // Set data into ListView using ArrayAdapter
-                    ArrayAdapter<String> ad = new ArrayAdapter<>(ViewTicketsDetails.this, android.R.layout.simple_list_item_1, name);
+//                    ArrayAdapter<String> ad = new ArrayAdapter<>(ViewTicketsDetails.this, android.R.layout.simple_list_item_1, name);
 //                    l1.setAdapter(ad);
 
+                    // custom page is used to set data into list, it will be created with
+                    // respect to number of tickets
                     l1.setAdapter(new CustomTicket(ViewTicketsDetails.this,name,dob,gender,gov_id));
 
                 } catch (Exception e) {
@@ -102,10 +108,14 @@ public class ViewTicketsDetails extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                // to display the error if occured
+
                 Log.e("VolleyError", error.toString());
                 Toast.makeText(ViewTicketsDetails.this, "Network Error: " + error.toString(), Toast.LENGTH_SHORT).show();
             }
         }) {
+
+            //to send data to or request to server
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
